@@ -42,3 +42,7 @@ Route::get('/read-sensor', 'ReadSensorController@read')->name('read-sensor');
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
