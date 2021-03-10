@@ -9,7 +9,7 @@ class Device extends Model
 {
     use SoftDeletes;
 	protected $table = 'device';
- 	protected $primaryKey = 'device_id';
+ 	protected $primaryKey = 'id';
     protected $fillable = [
     	'device',
     	'location',

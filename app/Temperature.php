@@ -9,7 +9,7 @@ class Temperature extends Model
 {
     use SoftDeletes;
 	protected $table = 'temperature';
- 	protected $primaryKey = 'temperature_id';
+ 	protected $primaryKey = 'id';
     protected $fillable = [
     	'temperature',
     	'date',

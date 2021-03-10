@@ -10,7 +10,7 @@ class LightIntencity extends Model
 {
     use SoftDeletes;
 	protected $table = 'light_intensity';
- 	protected $primaryKey = 'light_intensity_id';
+ 	protected $primaryKey = 'id';
     protected $fillable = [
     	'light_intensity',
     	'date',

@@ -9,7 +9,7 @@ class Soil extends Model
 {
     use SoftDeletes;
 	protected $table = 'soil_moisture';
- 	protected $primaryKey = 'soil_moisture_id';
+ 	protected $primaryKey = 'id';
     protected $fillable = [
     	'soil_moisture',
     	'date',

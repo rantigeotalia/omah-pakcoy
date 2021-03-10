@@ -9,7 +9,7 @@ class Humidity extends Model
 {
 	use SoftDeletes;
 	protected $table = 'humidity';
- 	protected $primaryKey = 'id_humidity';
+ 	protected $primaryKey = 'id';
     protected $fillable = [
     	'humidity',
     	'date',
