@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class LightIntencity extends Model
 {
     use SoftDeletes;
-	protected $table = 'light_intensity';
+	protected $table = 'light_intencity';
  	protected $primaryKey = 'id';
     protected $fillable = [
     	'light_intensity',

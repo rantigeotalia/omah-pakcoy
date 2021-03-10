@@ -49,7 +49,7 @@
                     <td>{{ $item->location }}</td>
                     <td>{{ $item->status }}</td>
                     <td>
-                      <a href="{{route('device-edit',$item->device_id)}}"><i class="fas fa-edit"></i></a> | 
+                      <a href="{{route('device-edit',$item->id)}}"><i class="fas fa-edit"></i></a> | 
                       <a href="#"><i class="fas fa-trash-alt" style="color: red"></i></a>
                     </td>
                   </tr>
