@@ -16,8 +16,8 @@ class Soil extends Model
     	'note',
     ];
     protected $dates = ['deleted_at'];
-    // public function device()
-    // {
-    //     return $this->belongsTo(Device::class);
-    // }
+    public function device()
+    {
+        return $this->belongsTo(Device::class);
+    }
 }
