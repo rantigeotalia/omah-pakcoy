@@ -30,6 +30,8 @@ Route::resource('soil', 'SoilController');
 
 Route::resource('light-intencity', 'LightIntencityController');
 
+Route::resource('report', 'ReportController');
+
 Route::resource('device', 'DeviceController');
 
 Route::post('/store-device', 'DeviceController@store')->name('device-store');

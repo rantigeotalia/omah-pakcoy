@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
           integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
           crossorigin="anonymous"/>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"/>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/toastr.css') }}" rel="stylesheet">
     <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/daterangepicker.css') }}" rel="stylesheet">
+
 
 
     @yield('third_party_stylesheets')
@@ -84,8 +86,23 @@
     </footer>
 </div>
 
+
+
 <script src="{{ asset('js/app.js') }}" defer></script>
 <script src="{{ asset('js/toastr.min.js') }}" defer></script>
+<script src="{{ asset('js/moment.min.js') }}" defer></script>
+<script src="{{ asset('js/daterangepicker.js') }}" defer></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+    
+    $(function () {
+
+      $('#reservation').daterangepicker()
+       // $('.select2').select2();
+
+     });
+</script>
 
 
 @yield('third_party_scripts')
