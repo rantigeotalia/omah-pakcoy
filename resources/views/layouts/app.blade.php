@@ -13,6 +13,8 @@
     <link href="{{ asset('css/toastr.css') }}" rel="stylesheet">
     <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/daterangepicker.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+
 
 
 
@@ -35,14 +37,14 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                    <img src="{{asset('images/rai.png')}}"
+                    <img src="{{asset('images/seira.png')}}"
                          class="user-image img-circle elevation-2" alt="User Image">
                     <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <!-- User image -->
                     <li class="user-header bg-primary">
-                        <img src="{{asset('images/rai.png')}}"
+                        <img src="{{asset('images/seira.png')}}"
                              class="img-circle elevation-2"
                              alt="User Image">
                         <p>
@@ -92,14 +94,18 @@
 <script src="{{ asset('js/toastr.min.js') }}" defer></script>
 <script src="{{ asset('js/moment.min.js') }}" defer></script>
 <script src="{{ asset('js/daterangepicker.js') }}" defer></script>
-
+<script src="{{ asset('js/bootstrap-datepicker.min.js') }}" defer></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script type="text/javascript">
     
     $(function () {
 
-      $('#reservation').daterangepicker()
-       // $('.select2').select2();
+            $('#reservation').daterangepicker()
+
+            $('#datepicker').datepicker({
+              autoclose: true,
+              format: 'yyyy-mm-dd'
+            })
 
      });
 </script>

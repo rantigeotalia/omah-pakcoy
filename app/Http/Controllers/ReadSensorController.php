@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class ReadSensorController extends Controller
 {
+    public function index()
+    {
+    	echo "Betul";
+    }
     public function read(Request $request)
     {
     	if (isset($_GET['suhu'])) {

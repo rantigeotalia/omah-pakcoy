@@ -41,17 +41,11 @@
     </a>
 </li>
 
-<li class="nav-item">
+<!-- <li class="nav-item">
     <a href="{{ route('report.index')}}" class="nav-link">
         <i class="nav-icon far fa-file-pdf"></i>
         <p>Report</p>
     </a>
-</li>
-
-<!-- <li class="nav-item">
-    <a href="{{ route('humidity.index')}}" class="nav-link">
-        <i class="nav-icon far fa-user"></i>
-        <p>User</p>
-    </a>
 </li> -->
+
 

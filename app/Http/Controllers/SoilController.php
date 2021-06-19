@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon; 
 use App\Soil;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,18 @@ class SoilController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $soil = Soil::all();
-        return view('soil_moisture.index', compact('soil'));
+        $filter_date = $request->input('filter_date');
+        if($request->filled('filter_date')) {
+          $soil = Soil::where(function ($q) use ($filter_date) {
+            $q->whereDate('date', '<=', $filter_date);
+          })->orderBy('id', 'DESC');
+        }else{
+            $soil = Soil::whereDate('date', Carbon::today())->orderBy('id', 'DESC');
+        }
+        $soil = $soil->paginate(20);
+        return view('soil_moisture.index', compact('soil','filter_date'));
     }
 
     /**

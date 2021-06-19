@@ -37,7 +37,7 @@
                     <th>No</th>
                     <th>Device</th>
                     <th>Location</th>
-                    <th>Status</th>
+                    <th>Created At</th>
                     <th>Aksi</th>
                   </tr>
                   </thead>
@@ -47,7 +47,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->device }}</td>
                     <td>{{ $item->location }}</td>
-                    <td>{{ $item->status }}</td>
+                    <td>{{ $item->created_at }}</td>
                     <td>
                       <a href="{{route('device-edit',$item->id)}}"><i class="fas fa-edit"></i></a> | 
                       <a href="#"><i class="fas fa-trash-alt" style="color: red"></i></a>

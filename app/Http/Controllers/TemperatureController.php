@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Carbon\Carbon; 
 use App\Temperature;
 use Illuminate\Http\Request;
+
 
 class TemperatureController extends Controller
 {
@@ -12,10 +13,19 @@ class TemperatureController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $temperature = Temperature::all();
-        return view('temperature.index', compact('temperature'));
+        $filter_date = $request->input('filter_date');
+        if($request->filled('filter_date')) {
+          $temperature = Temperature::where(function ($q) use ($filter_date) {
+            $q->whereDate('date', '<=', $filter_date);
+          })->orderBy('id', 'DESC');
+        }else{
+            $temperature = Temperature::whereDate('date', Carbon::today())->orderBy('id', 'DESC');
+        }
+        $temperature = $temperature->paginate(20);
+
+        return view('temperature.index', compact('temperature','filter_date'));
     }
 
     /**

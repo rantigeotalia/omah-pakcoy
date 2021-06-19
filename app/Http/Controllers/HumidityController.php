@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon; 
 use App\Humidity;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,19 @@ class HumidityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $humidity = Humidity::all();
-        return view('humidity.index', compact('humidity'));
+        $filter_date = $request->input('filter_date');
+        if($request->filled('filter_date')) {
+          $humidity = Humidity::where(function ($q) use ($filter_date) {
+            $q->whereDate('date', '<=', $filter_date);
+          })->orderBy('id', 'DESC');
+        }else{
+            $humidity = Humidity::whereDate('date', Carbon::today())->orderBy('date', 'DESC');
+        }
+
+        $humidity = $humidity->paginate(20);
+        return view('humidity.index', compact('humidity','filter_date'));
     }
 
     /**

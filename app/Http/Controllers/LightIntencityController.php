@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon; 
 use App\LightIntencity;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,19 @@ class LightIntencityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $light_intencity = LightIntencity::all();
-        return view('light_intencity.index', compact('light_intencity'));
+        $filter_date = $request->input('filter_date');
+        if($request->filled('filter_date')) {
+          $light_intencity = lightIntencity::where(function ($q) use ($filter_date) {
+            $q->whereDate('date', '<=', $filter_date);
+          })->orderBy('id', 'DESC');
+        }else{
+            $light_intencity = LightIntencity::whereDate('date', Carbon::today())->orderBy('date', 'DESC');
+        }
+ 
+        $light_intencity = $light_intencity->paginate(20);
+        return view('light_intencity.index', compact('light_intencity','filter_date'));
     }
 
     /**

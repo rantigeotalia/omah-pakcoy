@@ -36,9 +36,6 @@
                     <input type="text" name="location" id="location" value="{{ $device->location }}" class="form-control" placeholder="Device's Location">
                   </div>
                   <div class="form-group">
-                    <input type="text" name="status" id="status" value="{{ $device->status }}" class="form-control" placeholder="Device's Status">
-                  </div>
-                  <div class="form-group">
                     <button type="submit" class="btn btn-primary">Simpan</button>
                   </div>
 
