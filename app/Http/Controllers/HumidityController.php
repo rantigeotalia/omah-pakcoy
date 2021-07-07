@@ -16,16 +16,22 @@ class HumidityController extends Controller
     public function index(Request $request)
     {
         $filter_date = $request->input('filter_date');
+        $filter_status = $request->input('filter_status');
         if($request->filled('filter_date')) {
           $humidity = Humidity::where(function ($q) use ($filter_date) {
             $q->whereDate('date', '<=', $filter_date);
           })->orderBy('id', 'DESC');
-        }else{
+        }elseif($request->filled('filter_status')){
+            $humidity = Humidity::where(function ($q) use ($filter_status) {
+            $q->where('note', $filter_status);
+          });
+        }
+        else{
             $humidity = Humidity::whereDate('date', Carbon::today())->orderBy('date', 'DESC');
         }
-
         $humidity = $humidity->paginate(20);
-        return view('humidity.index', compact('humidity','filter_date'));
+        // dd($humidity);
+        return view('humidity.index', compact('humidity','filter_date','filter_status'));
     }
 
     /**

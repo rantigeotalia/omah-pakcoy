@@ -16,16 +16,22 @@ class TemperatureController extends Controller
     public function index(Request $request)
     {
         $filter_date = $request->input('filter_date');
+        $filter_status = $request->input('filter_status');
+
         if($request->filled('filter_date')) {
           $temperature = Temperature::where(function ($q) use ($filter_date) {
             $q->whereDate('date', '<=', $filter_date);
           })->orderBy('id', 'DESC');
+        }elseif($request->filled('filter_status')){
+            $temperature = Temperature::where(function ($q) use ($filter_status) {
+            $q->where('note', $filter_status);
+          });
         }else{
             $temperature = Temperature::whereDate('date', Carbon::today())->orderBy('id', 'DESC');
         }
         $temperature = $temperature->paginate(20);
 
-        return view('temperature.index', compact('temperature','filter_date'));
+        return view('temperature.index', compact('temperature','filter_date','filter_status'));
     }
 
     /**

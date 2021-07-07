@@ -16,15 +16,21 @@ class SoilController extends Controller
     public function index(Request $request)
     {
         $filter_date = $request->input('filter_date');
+        $filter_status = $request->input('filter_status');
+
         if($request->filled('filter_date')) {
           $soil = Soil::where(function ($q) use ($filter_date) {
             $q->whereDate('date', '<=', $filter_date);
           })->orderBy('id', 'DESC');
+        }elseif($request->filled('filter_status')){
+            $soil = Soil::where(function ($q) use ($filter_status) {
+            $q->where('note', $filter_status);
+          });
         }else{
             $soil = Soil::whereDate('date', Carbon::today())->orderBy('id', 'DESC');
         }
         $soil = $soil->paginate(20);
-        return view('soil_moisture.index', compact('soil','filter_date'));
+        return view('soil_moisture.index', compact('soil','filter_date','filter_status'));
     }
 
     /**

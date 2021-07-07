@@ -24,21 +24,28 @@
           <div class="col-12">
         
         <form action="" method="GET">
-          {{ csrf_field() }}
           <div class="col-md-6">
-                  <div class="form-group">
-                  <label>Date:</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">
-                          <i class="far fa-calendar-alt"></i>
-                        </span>
-                      </div>
-                      <input type="text" name = "filter_date" value="{{ $filter_date }}" class="form-control float-right" id="datepicker">
+              <div class="form-group">
+                <label>Date:</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="far fa-calendar-alt"></i>
+                      </span>
                     </div>
-
-                  <!-- /.input group -->
+                    <input type="text" name = "filter_date" value="{{ $filter_date }}" class="form-control float-right" id="datepicker">
                   </div>
+                  <!-- /.input group -->
+                </div>
+                <div class="form-group">
+                  <label>Status :</label>
+                    <select name="filter_status" class="form-control" style="width: 200px">
+                        <option value="">--Select Status--</option>
+                        <option value="Normal" {{ request('filter_status') == "Normal" ? 'selected' : '' }}>Normal</option>
+                        <option value="Hot" {{ request('filter_status') == "Hot" ? 'selected' : '' }}>Hot</option>
+                        <option value="Cool" {{ request('filter_status') == "Cool" ? 'selected' : '' }}>Cool</option>
+                    </select>
+                </div>
                   <div class="form-group">
                     <button type="submit" class="btn btn-default">Filter</button>
                   </div>
@@ -55,7 +62,8 @@
                     <th>Temperature</th>
                     <th>Date</th>
                     <th>Device</th>
-                    <th>Note</th>
+                    <th>Status</th>
+                    <th>Information</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -65,11 +73,18 @@
                         <td>{{ \Carbon\Carbon::parse($data->date)->format('Y-M-d H:i') }}</td>
                         <td>{{ $data->device_id }}</td>
                         <td>{{ $data->note }}</td>
+                          @if($data->note == "Normal")
+                            <td style="background-color: #0fbe00">
+                          @elseif($data->note == "Hot")
+                            <td style="background-color: #fb0000">
+                          @else
+                            <td style="background-color: #0000b0">
+                          @endif
                       </tr>
                     @endforeach
                 </table>
 
-                {{ $temperature->links() }}
+                {!! $temperature->appends(Request::except('page'))->render() !!}
 
               </div>
               <!-- /.card-body -->

@@ -24,26 +24,31 @@
           <div class="col-12">
 
             <form action="" method="GET">
-              {{ csrf_field() }}
               <div class="col-md-6">
-                      <div class="form-group">
-                      <label>Date:</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">
-                              <i class="far fa-calendar-alt"></i>
-                            </span>
-                          </div>
-                          <input type="text" name = "filter_date" value="{{ $filter_date }}" class="form-control float-right" id="datepicker">
-                        </div>
-
-                      <!-- /.input group -->
+                <div class="form-group">
+                  <label>Date:</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="far fa-calendar-alt"></i>
+                        </span>
                       </div>
-                      <div class="form-group">
-                        <button type="submit" class="btn btn-default">Filter</button>
-                      </div>
-
+                      <input type="text" name = "filter_date" value="{{ $filter_date }}" class="form-control float-right" id="datepicker">
                     </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Status :</label>
+                      <select name="filter_status" class="form-control" style="width: 200px">
+                          <option value="">--Select Status--</option>
+                          <option value="Normal" {{ request('filter_status') == "Normal" ? 'selected' : '' }}>Normal</option>
+                          <option value="Wet" {{ request('filter_status') == "Wet" ? 'selected' : '' }}>Wet</option>
+                          <option value="Dry" {{ request('filter_status') == "Dry" ? 'selected' : '' }}>Dry</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-default">Filter</button>
+                  </div>
+              </div>
             </form>
 
             <div class="card">
@@ -55,7 +60,8 @@
                     <th>Humidity</th>
                     <th>Date</th>
                     <th>Device</th>
-                    <th>Note</th>
+                    <th>Status</th>
+                    <th>Information</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -65,12 +71,19 @@
                     <td>{{ $data->date }}</td>
                     <td>{{ $data->device_id }}</td>
                     <td>{{ $data->note }}</td>
+                    @if($data->note == "Normal")
+                      <td style="background-color: #0fbe00">
+                    @elseif($data->note == "Dry")
+                      <td style="background-color: #fb0000">
+                    @else
+                      <td style="background-color: #0000b0">
+                    @endif
                   </tr>
                 @endforeach
     
                 </table>
 
-                {{ $humidity->links() }}
+                  {!! $humidity->appends(Request::except('page'))->render() !!}
 
               </div>
               <!-- /.card-body -->

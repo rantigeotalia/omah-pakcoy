@@ -95,6 +95,7 @@
 <script src="{{ asset('js/moment.min.js') }}" defer></script>
 <script src="{{ asset('js/daterangepicker.js') }}" defer></script>
 <script src="{{ asset('js/bootstrap-datepicker.min.js') }}" defer></script>
+<script src="{{ asset('js/jquery.knob.min.js') }}" defer></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script type="text/javascript">
     
@@ -107,7 +108,112 @@
               format: 'yyyy-mm-dd'
             })
 
+            $('.knob').knob()
+
+            //Temperature Color
+            var note_temperature = $('#noteTemperature').val();
+            if(note_temperature == "Normal"){
+              $('#knob-temp').trigger(
+                 'configure',
+                  {
+                    "fgColor":"#00a65a"
+                }
+              );            
+            }else if(note_temperature == "Cool"){
+              $('#knob-temp').trigger(
+                 'configure',
+                  {
+                    "fgColor":"#00c0ef"
+                }
+              ); 
+            }else{
+              $('#knob-temp').trigger(
+                 'configure',
+                  {
+                    "fgColor":"#f56954"
+                }
+              );
+            }
+
+            //Humidity Color
+            var note_humidity = $('#noteHumidity').val();
+            if(note_temperature == "Normal"){
+              $('#knob-humi').trigger(
+                 'configure',
+                  {
+                    "fgColor":"#00a65a"
+                }
+              );            
+            }else if(note_temperature == "Wet"){
+              $('#knob-humi').trigger(
+                 'configure',
+                  {
+                    "fgColor":"#00c0ef"
+                }
+              ); 
+            }else{
+              $('#knob-humi').trigger(
+                 'configure',
+                  {
+                    "fgColor":"#f56954"
+                }
+              );
+            }
+
+            //Soil Moisture
+            var note_soil = $('#noteSoil').val();
+            if(note_soil == "Normal"){
+              $('#knob-soil').trigger(
+                 'configure',
+                  {
+                    "fgColor":"#00a65a"
+                }
+              );            
+            }else if(note_soil == "Wet"){
+              $('#knob-soil').trigger(
+                 'configure',
+                  {
+                    "fgColor":"#00c0ef"
+                }
+              ); 
+            }else{
+              $('#knob-soil').trigger(
+                 'configure',
+                  {
+                    "fgColor":"#f56954"
+                }
+              );
+            }
+
+            //Light Intencity
+            var light_intencity = $('#noteLight').val();
+            if(light_intencity == "Normal"){
+              $('#knob-light').trigger(
+                 'configure',
+                  {
+                    "fgColor":"#00a65a"
+                }
+              );            
+            }else if(light_intencity == "Dark"){
+              $('#knob-light').trigger(
+                 'configure',
+                  {
+                    "fgColor":"#080a0f"
+                }
+              ); 
+            }else{
+              $('#knob-light').trigger(
+                 'configure',
+                  {
+                    "fgColor":"#c6c914"
+                }
+              );
+            }
+
+    /* END JQUERY KNOB */
+
      });
+
 </script>
 
 
